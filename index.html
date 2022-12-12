@@ -32,14 +32,15 @@
         Confirmer
       </button>
     </form>
-    <div id="idresult" class="container-fluid paymentStatus_box success_box">
+    <div id="idresult" class="container-fluid paymentStatus_box failed_box">
       <div class="col-xs-1 paymentStatus">
         <div id="idresulticon" class="warn_error_white"></div>
       </div>
       <div class="col-xs-11">
         <div id="accesslayer" class="statusMessage"></div>
-        <div id="message" class="statusMessage">
-          Votre paiement a été éffectué
+        <div id="message" class="statusMessage">Votre paiement a echoue</div>
+        <div id="returnMessage" class="returnMessage">
+          <div id="reason">Raison : Paiement refuse, code otp incorrect.</div>
         </div>
       </div>
     </div>
