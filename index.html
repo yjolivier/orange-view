@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Orange Money Payment</title>
+  </head>
+  <body>
+    <form action="#">
+      <input
+        id="idphone"
+        name="phoneNumber"
+        type="tel"
+        pattern="[0-9]*"
+        class="row input-field"
+        autocomplete="off"
+        value=""
+        required=""
+      />
+      <input
+        id="idotpcode"
+        name="paymentCode"
+        type="text"
+        pattern="[0-9]*"
+        class="row input-field"
+        autocomplete="off"
+        value=""
+        required=""
+      />
+      <button type="button" id="submitbutton" class="btn btn-primary">
+        Confirmer
+      </button>
+    </form>
+    <div id="message_container">
+    </div>
+  </body>
+  <script>
+    const failed_box = `<div
+        id="idresult"
+        class="container-fluid paymentStatus_box failed_box d-none"
+      >
+        <div class="col-xs-1 paymentStatus">
+          <div id="idresulticon" class="warn_error_white"></div>
+        </div>
+        <div class="col-xs-11">
+          <div id="accesslayer" class="statusMessage"></div>
+          <div id="message" class="statusMessage">Votre paiement a echoue</div>
+          <div id="returnMessage" class="returnMessage">
+            <div id="reason">Raison : Paiement refuse, code otp incorrect.</div>
+          </div>
+        </div>
+      </div>`;
+
+    const success_box = `<div
+        id="idresult"
+        class="container-fluid paymentStatus_box success_box"
+      >
+        <div class="col-xs-1 paymentStatus">
+          <div id="idresulticon" class="warn_error_white"></div>
+        </div>
+        <div class="col-xs-11">
+          <div id="accesslayer" class="statusMessage"></div>
+          <div id="message" class="statusMessage">
+            Votre paiement a été éffectué
+          </div>
+        </div>
+      </div>`
+    const submitbutton = document.getElementById("submitbutton");
+    submitbutton.addEventListener("click", (e) => {
+      e.preventDefault();
+      const idotpcode = document.getElementById("idotpcode");
+      if (idotpcode.value === "0000" || idotpcode.value === "000000") {
+        document.getElementById("message_container").innerHTML = failed_box;
+      } else {
+        document.getElementById("message_container").innerHTML = success_box;
+      }
+    });
+  </script>
+</html>
