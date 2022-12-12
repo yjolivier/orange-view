@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Orange Money Payment</title>
   </head>
+  <style>
+    .d-none {
+      display: none;
+    }
+  </style>
   <body>
     <form action="#">
       <input
@@ -32,48 +37,39 @@
         Confirmer
       </button>
     </form>
-    <div id="message_container">
+    <div id="idresult" class="container-fluid paymentStatus_box failed_box d-none">
+      <div class="col-xs-1 paymentStatus">
+        <div id="idresulticon" class="warn_error_white"></div>
+      </div>
+      <div class="col-xs-11">
+        <div id="accesslayer" class="statusMessage"></div>
+        <div id="message" class="statusMessage">Votre paiement a echoue</div>
+        <div id="returnMessage" class="returnMessage">
+          <div id="reason">Raison : Paiement refuse, code otp incorrect.</div>
+        </div>
+      </div>
+    </div>
+    <div id="idresult" class="container-fluid paymentStatus_box success_box d-none">
+      <div class="col-xs-1 paymentStatus">
+        <div id="idresulticon" class="warn_error_white"></div>
+      </div>
+      <div class="col-xs-11">
+        <div id="accesslayer" class="statusMessage"></div>
+        <div id="message" class="statusMessage">
+          Votre paiement a été éffectué
+        </div>
+      </div>
     </div>
   </body>
   <script>
-    const failed_box = `<div
-        id="idresult"
-        class="container-fluid paymentStatus_box failed_box"
-      >
-        <div class="col-xs-1 paymentStatus">
-          <div id="idresulticon" class="warn_error_white"></div>
-        </div>
-        <div class="col-xs-11">
-          <div id="accesslayer" class="statusMessage"></div>
-          <div id="message" class="statusMessage">Votre paiement a echoue</div>
-          <div id="returnMessage" class="returnMessage">
-            <div id="reason">Raison : Paiement refuse, code otp incorrect.</div>
-          </div>
-        </div>
-      </div>`;
-
-    const success_box = `<div
-        id="idresult"
-        class="container-fluid paymentStatus_box success_box"
-      >
-        <div class="col-xs-1 paymentStatus">
-          <div id="idresulticon" class="warn_error_white"></div>
-        </div>
-        <div class="col-xs-11">
-          <div id="accesslayer" class="statusMessage"></div>
-          <div id="message" class="statusMessage">
-            Votre paiement a été éffectué
-          </div>
-        </div>
-      </div>`
     const submitbutton = document.getElementById("submitbutton");
     submitbutton.addEventListener("click", (e) => {
       e.preventDefault();
       const idotpcode = document.getElementById("idotpcode");
       if (idotpcode.value === "0000" || idotpcode.value === "000000") {
-        document.getElementById("message_container").innerHTML = failed_box;
+        document.querySelector(".failed_box.d-none").classList.remove("d-none");
       } else {
-        document.getElementById("message_container").innerHTML = success_box;
+        document.querySelector(".success_box.d-none").classList.remove("d-none");
       }
     });
   </script>
